@@ -11,7 +11,6 @@ const refs = {
 };
 
 let intervalId = null;
-let finishTime = null;
 let ms = 0;
 
 const options = {
@@ -20,8 +19,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    ms = selectedDates[0].getTime() - Date.now();
-    if (ms <= 0) {
+    if (selectedDates[0].getTime() - Date.now() <= 0) {
       refs.startBtn.disabled = true;
       Notiflix.Notify.failure('Please choose a date in the future', {
         timeout: 2000,
